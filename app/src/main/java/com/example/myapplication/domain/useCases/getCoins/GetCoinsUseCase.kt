@@ -15,13 +15,13 @@ class GetCoinsUseCase @Inject constructor(
 ) {
     operator fun invoke(): Flow<Resource<List<Coin>>> = flow {
         try {
-            emit(Resource.Loading())
+            emit(Resource.Loading<List<Coin>>())
             val coins = repository.getCoins().map { it.toCoin() }
-            emit(Resource.Success(coins)) //forwarding data to view model
+            emit(Resource.Success<List<Coin>>(coins)) //forwarding data to view model
         }catch (e: HttpException) {
-            emit(Resource.Error(e.localizedMessage ?: "Niekde nastala chyba :} "))
+            emit(Resource.Error<List<Coin>>(e.localizedMessage ?: "Niekde nastala chyba :} "))
         }catch (e: IOException) {
-            emit(Resource.Error("Skontroluj internety"))
+            emit(Resource.Error<List<Coin>>("Skontroluj internety"))
         }
     }
 
