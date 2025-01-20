@@ -2,7 +2,7 @@ package com.example.myapplication.presentation.coinDetail
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-//import com.google.accompanist.flowlayout.FlowRow
+import com.google.accompanist.flowlayout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer

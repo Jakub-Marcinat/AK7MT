@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.compose.NavHost
@@ -18,27 +20,24 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContent {
-            val navController = rememberNavController()
-            NavHost(navController = navController, startDestination = Screen.CoinListScreen.route){
-                composable(
-                    route = Screen.CoinListScreen.route
+            Surface(color = MaterialTheme.colors.background) {
+                val navController = rememberNavController()
+                NavHost(
+                    navController = navController,
+                    startDestination = Screen.CoinListScreen.route
                 ) {
-                    CoinListScreen(navController)
-                }
-                composable(
-                    route = Screen.CoinListScreen.route + "/{coinID}"
-                ) {
-                    Screen.CoinDetailScreen
+                    composable(
+                        route = Screen.CoinListScreen.route
+                    ) {
+                        CoinListScreen(navController)
+                    }
+                    composable(route = Screen.CoinListScreen.route + "/{coinID}") {
+                        CoinDetailScreen(navController)
+                    }
                 }
             }
-        }
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
         }
     }
 }

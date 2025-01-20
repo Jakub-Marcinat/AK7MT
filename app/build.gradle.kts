@@ -49,6 +49,7 @@ android {
     }
 }
 
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -82,4 +83,10 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
+
+    implementation(libs.accompanist.flowlayout)
+}
+
+hilt {
+    enableAggregatingTask = false
 }
