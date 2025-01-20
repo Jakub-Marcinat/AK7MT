@@ -85,6 +85,7 @@ dependencies {
     implementation(libs.logging.interceptor)
 
     implementation(libs.accompanist.flowlayout)
+    implementation("androidx.core:core-splashscreen:1.0.1")
 }
 
 hilt {
